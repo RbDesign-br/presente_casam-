@@ -4,9 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Agradecimento & PIX - Djane & Theo</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,600;1,700&display=swap" rel="stylesheet">
   
   <style>
     * {
@@ -16,85 +13,52 @@
     }
 
     body {
-      background-color: #2c2520;
+      background-color: #1a1614; /* Fundo escuro elegante fora do card */
       display: flex;
       justify-content: center;
       align-items: center;
       min-height: 100vh;
-      font-family: 'Cormorant Garamond', serif;
     }
 
-    /* Card do Convite */
-    .convite-card {
+    /* Container com a sua imagem em alta definição */
+    .convite-container {
       position: relative;
       width: 100%;
       max-width: 430px;
       aspect-ratio: 9 / 16;
       background: url('convite.png') no-repeat center top;
       background-size: 100% 100%;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.6);
       overflow: hidden;
     }
 
-    /* Nova chave PIX sobreposta ao campo da imagem */
-    .pix-numero {
-      position: absolute;
-      top: 62.2%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      font-size: 1.55rem;
-      font-weight: 700;
-      color: #2b2b2b;
-      letter-spacing: 2px;
-      background-color: #f7f1e5;
-      width: 58%;
-      text-align: center;
-      padding: 3px 0;
-      border-radius: 4px;
-    }
-
-    /* Botão transparente exatamente sobre o botão de copiar da imagem */
+    /* Botão invisível posicionado exatamente sobre o botão "COPIAR CHAVE PIX" da imagem */
     .btn-copiar {
       position: absolute;
       top: 71.2%;
       left: 50%;
       transform: translate(-50%, -50%);
-      width: 58%;
-      height: 46px;
+      width: 60%;
+      height: 50px;
       background: transparent;
       border: none;
       cursor: pointer;
+      border-radius: 8px;
     }
 
     .btn-copiar:active {
       transform: translate(-50%, -50%) scale(0.96);
     }
 
-    /* Novos Nomes sobrepostos */
-    .nomes-noivos {
-      position: absolute;
-      top: 83.5%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      font-size: 1.45rem;
-      font-weight: 700;
-      font-style: italic;
-      color: #2c2c2c;
-      background-color: #f7f1e5;
-      width: 62%;
-      text-align: center;
-      padding: 2px 0;
-    }
-
-    /* Aviso ao copiar */
+    /* Mensagem visual que aparece ao clicar em copiar */
     #toast {
       visibility: hidden;
       min-width: 180px;
-      background-color: #2b2b2b;
+      background-color: rgba(0, 0, 0, 0.85);
       color: #fff;
       text-align: center;
       border-radius: 20px;
-      padding: 10px 16px;
+      padding: 10px 18px;
       position: absolute;
       z-index: 10;
       top: 50%;
@@ -114,33 +78,29 @@
 </head>
 <body>
 
-  <div class="convite-card">
+  <div class="convite-container">
     
-    <!-- Chave PIX -->
-    <div class="pix-numero" id="chavePix">85994400202</div>
-
-    <!-- Botão de Ação -->
+    <!-- Botão Transparente Clicável -->
     <button class="btn-copiar" onclick="copiarPix()"></button>
 
-    <!-- Nomes dos Noivos -->
-    <div class="nomes-noivos">Djane & Theo</div>
-
-    <!-- Mensagem de Confirmação -->
+    <!-- Notificação de confirmação -->
     <div id="toast">Chave PIX copiada!</div>
 
   </div>
 
   <script>
     function copiarPix() {
-      const chave = document.getElementById("chavePix").innerText;
-      navigator.clipboard.writeText(chave).then(() => {
+      // Sua chave PIX que será copiada
+      const chavePix = "85994400202";
+
+      navigator.clipboard.writeText(chavePix).then(() => {
         const toast = document.getElementById("toast");
         toast.className = "show";
         setTimeout(() => { 
           toast.className = toast.className.replace("show", ""); 
         }, 2000);
       }).catch(err => {
-        alert("Chave PIX: " + chave);
+        alert("Chave PIX: " + chavePix);
       });
     }
   </script>
